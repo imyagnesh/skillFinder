@@ -1,0 +1,245 @@
+<md-content layout="column" flex>
+    <div layout="row" flex>
+        <md-content layout="row" flex>
+            <!-- <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2 md-sidenav-list" md-component-id="nav" md-is-locked-open="$mdMedia('gt-sm')">
+                <md-toolbar class="md-whiteframe-z1">
+                    <div class="md-toolbar-tools">
+
+
+                        <md-button class="md-icon-button animate-show" aria-label="Search" ng-click="vm.toggleSearch()">
+                            <md-icon ng-if="!vm.showSearch" md-svg-icon="action:ic_search_24px" aria-label="Search"></md-icon>
+                            <md-icon ng-if="vm.showSearch" md-svg-icon="navigation:ic_arrow_back_24px" aria-label="Back"></md-icon>
+                        </md-button>
+                        <md-input-container class="animate-show" ng-show="vm.showSearch">
+                            <label>&nbsp;</label>
+                            <input ng-model="vm.search" placeholder="enter search">
+                        </md-input-container>
+                        <span flex ng-if="!vm.showSearch"></span>
+                        <md-button class="md-icon-button" ng-click="vm.toggleSidenav('nav')" hide-gt-md aria-label="Menu">
+                            <md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Menu"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-list flex>
+                    <md-list-item class="md-2-line" ng-repeat="(key, prop) in vm.skills" ng-if="!vm.search || key.includes(vm.search)">
+                        <md-checkbox ng-click="vm.searchProfile(key, vm.selected)"></md-checkbox>
+                        <div class="md-list-item-text">
+                            <div class="md-body-2">{{key}}</div>
+                            <p class="md-body-2">{{prop.length}} Employee(s)</p>
+                        </div>
+                    </md-list-item>
+
+                </md-list>
+            </md-sidenav> -->
+            <md-content layout="column" layout-fill>
+                <md-toolbar class="animate-show md-whiteframe-z1">
+                    <div class="md-toolbar-tools" style="height:auto;max-height:none;">
+                        <h3><span>Skill Finder</span></h3>
+                        <!--<span flex></span>-->
+                        <!--<md-button class="md-icon-button" ng-click="vm.toggleSidenav('right')" aria-label="Menu">
+                            <md-icon md-svg-icon="content:ic_filter_list_24px"></md-icon>
+                        </md-button>-->
+                        <md-chips layout-margin ng-model="vm.advanceSearch.skills" placeholder="Search skills" delete-button-label="Remove Skill" delete-hint="Press delete to remove skill" secondary-placeholder="+Skill" flex></md-chips>
+                        <md-menu md-position-mode="target-right target" md-offset="0 65">
+                            <md-button aria-label="Open Settings" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                <md-icon md-menu-origin md-svg-icon="navigation:ic_more_vert_24px"></md-icon>
+                            </md-button>
+                            <md-menu-content width="3">
+                                <md-menu-item>
+                                    <md-button ng-click="vm.logout()">
+                                        <div layout="row">
+                                            <p flex>Sign Out</p>
+                                            <md-icon md-menu-align-target md-svg-icon="action:ic_power_settings_new_24px"></md-icon>
+                                        </div>
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </div>
+                    <!-- <div class="md-toolbar-tools md-toolbar-tools-bottom" layout="column">
+                        <md-chips class="md-primary" ng-model="vm.tags" readonly="vm.readonly" placeholder="Enter a tag" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Tag"></md-chips>
+                          <md-chips class="md-primary" ng-model="vm.tags" readonly="vm.readonly" placeholder="Enter a tag" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Tag"></md-chips>
+                            <md-chips class="md-primary" ng-model="vm.tags" readonly="vm.readonly" placeholder="Enter a tag" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Tag"></md-chips>
+                    </div> -->
+                </md-toolbar>
+                <!-- <div class="inset" hide-sm></div> -->
+                <!-- <div layout-gt-sm="row" layout-align="center center"> -->
+                <md-content>
+                    <!-- <div flex-gt-sm="95" flex-gt-lg="80"> -->
+                    <md-list flex>
+                        <md-list-item class="md-3-line" ng-repeat="profile in vm.profiles | filter">
+                            <md-card flex>
+                                <md-button layout-fill ng-if="!vm.showProfile[$index]" ng-click="vm.showProfile[$index] = 1">
+                                    <div class="md-list-item-inner" layout-padding>
+                                        <div class="md-list-item-text" layout="column" layout-align="center start">
+                                            <h3>{{ profile.userId.name }}</h3>
+                                            <h4>{{ profile.designation }}</h4>
+                                            <p>{{ profile.managerId.name }}</p>
+                                            <md-chips ng-model="profile.skills" name="skills" readonly="true" style="box-shadow: none">
+                                                <md-chip-template>
+                                                    <strong>{{$chip.skill}}</strong>
+                                                </md-chip-template>
+                                            </md-chips>
+                                        </div>
+                                        <a ui-sref="getFile({id: profile.resume.resumeId })" target="_self" download>
+                                            <md-icon md-svg-icon="file:ic_file_download_24px"></md-icon>
+                                        </a>
+                                        <md-button class="md-icon-button" aria-label="email" ng-click="vm.showAdd($event)">
+                                            <md-icon md-svg-icon="communication:ic_email_24px"></md-icon>
+                                        </md-button>
+                                    </div>
+                                </md-button>
+                                <div ng-if="vm.showProfile[$index]">
+                                    <md-toolbar>
+                                        <div class="md-toolbar-tools">
+                                            <md-icon class="md-avatar" hide show-gt-sm md-svg-icon="action:ic_perm_identity_24px"></md-icon>
+                                            <div layout="column" flex>
+                                                <h3>
+                                                      <span>{{profile.userId.name}}</span>
+                                                    </h3>
+                                            </div>
+                                            <md-button class="md-icon-button" aria-label="email" ng-click="vm.showAdd($event)">
+                                                <md-icon md-svg-icon="communication:ic_email_24px"></md-icon>
+                                            </md-button>
+                                            <md-button class="md-icon-button" aria-label="Close" ng-click="vm.showProfile[$index] = 0">
+                                                <md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
+                                            </md-button>
+                                        </div>
+                                    </md-toolbar>
+                                    <md-content flex>
+                                        <md-list>
+                                            <md-list-item class="md-3-line">
+                                                <md-icon class="md-accent" hide show-gt-sm md-svg-icon="action:ic_supervisor_account_24px"></md-icon>
+                                                <div class="md-list-item-text">
+                                                    <h3>Manager Name</h3>
+                                                    <p>{{profile.managerId.name}}</p>
+                                                    <md-divider md-inset hide show-gt-sm></md-divider>
+                                                </div>
+                                                <md-divider hide-gt-sm></md-divider>
+                                            </md-list-item>
+                                            <md-list-item class="md-3-line">
+                                                <md-icon class="md-accent" hide show-gt-sm md-svg-icon="communication:ic_email_24px"></md-icon>
+                                                <div class="md-list-item-text">
+                                                    <h3>Manager Email</h3>
+                                                    <p>{{profile.managerId.email}}</p>
+                                                    <md-divider md-inset hide show-gt-sm></md-divider>
+                                                </div>
+                                                <md-divider hide-gt-sm></md-divider>
+                                            </md-list-item>
+                                            <md-list-item class="md-3-line">
+                                                <md-icon class="md-accent" hide show-gt-sm md-svg-icon="action:ic_grade_24px"></md-icon>
+                                                <div class="md-list-item-text">
+                                                    <h3>Designation</h3>
+                                                    <p>{{profile.designation}}</p>
+                                                    <md-divider md-inset hide show-gt-sm></md-divider>
+                                                </div>
+                                                <md-divider hide-gt-sm></md-divider>
+                                            </md-list-item>
+                                            <md-list-item class="md-3-line">
+                                                <md-icon class="md-accent" hide show-gt-sm md-svg-icon="action:ic_description_24px"></md-icon>
+                                                <div class="md-list-item-text">
+                                                    <h3>Resume</h3>
+                                                    <p><a ui-sref="getFile({id: vm.profile.resume.resumeId })" target="_self" download>{{profile.resume.fileName}}</a> </p>
+                                                    <md-divider md-inset hide show-gt-sm></md-divider>
+                                                </div>
+                                                <md-divider hide-gt-sm></md-divider>
+                                            </md-list-item>
+                                            <md-list-item class="md-3-line">
+                                                <md-icon class="md-accent" hide show-gt-sm md-svg-icon="action:ic_build_24px"></md-icon>
+                                                <md-list flex>
+                                                    <md-list-item class="md-1-line">
+                                                        <div class="md-list-item-text">
+                                                            <div class="md-headline">Skills</div>
+                                                        </div>
+                                                    </md-list-item>
+                                                    <md-content layout-gt-sm="row" layout-wrap>
+                                                        <md-list-item class="md-2-line" ng-repeat="item in profile.skills track by $index" flex-gt-sm="50">
+                                                            <div class="md-list-item-text" layout="row" layout-xs="column">
+                                                                <p flex="50">{{ item.skill }}</p>
+                                                                <star-rating rating="item.rating" read-only="true" max-rating="5" flex="50"></star-rating>
+                                                            </div>
+                                                        </md-list-item>
+                                                    </md-content>
+                                                </md-list>
+                                            </md-list-item>
+                                        </md-list>
+                                    </md-content>
+                                </div>
+                            </md-card>
+                        </md-list-item>
+                    </md-list>
+
+                    <!-- <md-list flex>
+                            <md-list-item class="md-3-line" ng-repeat="profile in vm.profiles | filter" ng-click="null">
+                                <md-card>
+                                    <md-content layout-margin layout="row" layout-align="start center">
+                                        <md-content layout-margin layout="column" layout-align="center stretch" flex>
+                                            <h3>{{ profile.userId.name }}</h3>
+                                            <p>{{ profile.designation }}</p>
+                                            <p>{{ profile.managerId.name }}</p>
+                                        </md-content>
+                                        <a ui-sref="getFile({id: profile.resume.resumeId })" target="_self" download>
+                                            <md-icon md-svg-icon="file:ic_file_download_24px"></md-icon>
+                                        </a>
+                                        <md-button class="md-icon-button" aria-label="email" ng-click="vm.showAdd($event)">
+                                            <md-icon md-svg-icon="communication:ic_email_24px"></md-icon>
+                                        </md-button>
+                                    </md-content>
+                                    <md-chips layout-padding ng-model="profile.skills" name="skills" readonly="true">
+                                        <md-chip-template>
+                                            <strong>{{$chip.skill}}</strong>
+                                        </md-chip-template>
+                                    </md-chips>
+                                </md-card>
+                            </md-list-item>
+                        </md-list> -->
+                    <!-- </div> -->
+                </md-content>
+                <!-- </div> -->
+            </md-content>
+            <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+                <md-toolbar class="md-whiteframe-z1">
+                    <div class="md-toolbar-tools">
+                        <h1 flex>Advance search</h1>
+                        <md-button class="md-icon-button" ng-click="vm.toggleSidenav('right')" aria-label="close">
+                            <md-icon md-svg-icon="navigation:ic_close_24px" style="fill:#fff;" aria-label="close"></md-icon>
+                        </md-button>
+                    </div>
+                </md-toolbar>
+                <md-content layout="column" layout-padding layout-align="space-around stretch">
+                    <md-chips ng-model="vm.advanceSearch.employees" md-autocomplete-snap="" md-require-match="true" md-on-add="vm.search()" md-on-remove="vm.search()">
+                        <md-autocomplete md-selected-item="vm.selectedEmployees" md-search-text="vm.searchEmployee" md-items="item in vm.searchEmployees(vm.searchEmployee,'developer')" md-item-text="item.name" placeholder="Search for Employees" md-autoselect>
+                            <span md-highlight-text="vm.searchEmployee" md-highlight-flags="^i">{{item.name}}</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                                  <span>{{$chip.name}}</span>
+                            </span>
+                        </md-chip-template>
+                    </md-chips>
+                    <md-chips ng-model="vm.advanceSearch.designations" readonly="ctrl.readonly" placeholder="search for designation" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Designation" md-on-add="vm.search()" md-on-remove="vm.search()"></md-chips>
+                    <md-chips ng-model="vm.advanceSearch.managers" md-autocomplete-snap="" md-require-match="true" md-on-add="vm.search()" md-on-remove="vm.search()">
+                        <md-autocomplete md-selected-item="vm.selectedManagers" md-search-text="vm.searchManager" md-items="item in vm.searchEmployees(vm.searchManager,'manager')" md-item-text="item.name" placeholder="Search for managers" md-autoselect>
+                            <span md-highlight-text="vm.searchManager" md-highlight-flags="^i">{{item.name}}</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                                  <span>{{$chip.name}}</span>
+                            </span>
+                        </md-chip-template>
+                    </md-chips>
+                    <md-chips ng-model="vm.advanceSearch.skills" md-autocomplete-snap="" md-require-match="true" md-on-add="vm.search()" md-on-remove="vm.search()">
+                        <md-autocomplete md-selected-item="vm.selectedSkills" md-search-text="vm.searchSkill" md-items="item in vm.skillSearch(vm.searchSkill)" md-item-text="item._id" placeholder="Search for skills" md-autoselect>
+                            <span md-highlight-text="vm.searchSkill" md-highlight-flags="^i">{{item._id}}</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                                  <span>{{$chip._id}}</span>
+                            </span>
+                        </md-chip-template>
+                    </md-chips>
+                </md-content>
+            </md-sidenav>
+        </md-content>
+    </div>
+</md-content>

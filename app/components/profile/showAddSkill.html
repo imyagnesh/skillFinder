@@ -1,0 +1,40 @@
+<md-dialog aria-label="Form">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Add Skills</h2>
+            <md-button class="md-fab md-fab-top-right md-toolbar-button" aria-label="Add Skill" ng-click="addSkill()">
+                <md-icon md-svg-icon="content:ic_add_24px"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <form ng-submit="onSubmit();" name="skillForm" novalidate>
+        <md-content flex>
+            <md-list layout-margin flex>
+                <md-list-item class="md-2-line" ng-repeat="item in skills track by $index">
+                    <div class="md-list-item-text" layout="row" layout-xs="column" layout="row" layout-align="space-around start" layout-fill>
+                        <md-input-container class="md-block" flex>
+                            <label>Skill</label>
+                            <input name="skill{{$index}}" ng-model="item.skill" ng-change="checkDuplicate($index)" required />
+                            <div ng-messages="skillForm.skill{{$index}}.$error">
+                                <div ng-message="required">
+                                    Skill is required.
+                                </div>
+                                <div ng-message="unique">
+                                    Skill must be unique.
+                                </div>
+                            </div>
+                        </md-input-container>
+                        <star-rating layout-margin rating="item.rating" read-only="false" max-rating="5"></star-rating>
+                    </div>
+                    <md-button class="md-icon-button" aria-label="remove" ng-click="deleteSkill($index);">
+                        <md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
+                    </md-button>
+                </md-list-item>
+            </md-list>
+        </md-content>
+        <md-dialog-actions layout="row"> <span flex></span>
+            <md-button ng-click="cancel(skillForm)"> Cancel </md-button>
+            <md-button type="submit" class="md-primary" ng-disabled="skillForm.$invalid"> Save </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

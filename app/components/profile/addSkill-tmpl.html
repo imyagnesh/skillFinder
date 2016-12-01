@@ -1,0 +1,95 @@
+<!--<md-dialog aria-label="Add Skill" ng-cloak>
+    <form ng-submit="onSubmit();">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add SKill</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+            <md-button class="addSkill md-accent md-fab md-fab-top-right" ng-click="addSkill()">
+                <md-icon aria-label="add">add</md-icon>
+            </md-button>
+        </md-toolbar>
+        <md-dialog-content class="autoScroll">
+            <md-content layout-margin layout="column" style="padding:40px 20px 20px 20px;">-->
+<!--<mdt-table>
+                    <mdt-header-row>
+                        <mdt-column align-rule="left">Skill</mdt-column>
+                        <mdt-column align-rule="right">Rating</mdt-column>
+                        <mdt-column align-rule="right"></mdt-column>
+                    </mdt-header-row>
+                    <mdt-row ng-repeat="s in skills track by $index">
+                        <mdt-cell>
+                            <md-input-container md-no-float>
+                                <input name="skill" type="text" ng-model="s.skill" required placeholder="Skill" aria-label="Skill">
+                            </md-input-container>
+                        </mdt-cell>
+                        <mdt-cell>
+                            <star-rating rating="s.rating" read-only="false" max-rating="5"></star-rating>
+                        </mdt-cell>
+                        <mdt-cell>
+                            <md-button class="md-icon-button" ng-click="deleteSkill($index);" ng-if="!$first">
+                                <md-icon aria-label="Close dialog">close</md-icon>
+                            </md-button>
+                        </mdt-cell>
+                    </mdt-row>
+                </mdt-table>-->
+
+<!--
+                <md-table-container>
+                    <table md-table>
+                        <thead md-head>
+                            <tr md-row>
+                                <th md-column><span>Skill</span></th>
+                                <th md-column><span>Rating</span></th>
+                                <th md-column></th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row
+                                ng-repeat="s in skills track by $index">
+                                <td md-cell>
+                                    <md-input-container md-no-float>
+                                        <input name="skill" type="text" ng-model="s.skill" required placeholder="Skill" aria-label="Skill">
+                                    </md-input-container>
+                                </td>
+                                <td md-cell>
+                                    <star-rating rating="s.rating" read-only="false" max-rating="5"></star-rating>
+                                </td>
+                                <td md-cell>
+                                    <md-button class="md-icon-button" ng-click="deleteSkill($index);" ng-if="!$first">
+                                        <md-icon aria-label="Close dialog">close</md-icon>
+                                    </md-button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+            </md-content>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button type="submit">
+                Add Skill
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>-->
+
+<md-dialog aria-label="Form">
+    <md-content class="md-padding">
+        <form name="userForm">
+            <div layout layout-sm="column">
+                <md-input-container flex> <label>First Name</label> <input ng-model="user.firstName"> </md-input-container>
+                <md-input-container flex>
+                <label>Last Name</label> <input ng-model="user.lastName"> </md-input-container>
+            </div>
+            <md-input-container flex> <label>Message</label> <textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea> </md-input-container>
+        </form>
+    </md-content>
+    <md-dialog-actions layout="row"> <span flex></span>
+        <md-button ng-click="answer('not useful')"> Cancel </md-button>
+        <md-button ng-click="answer('useful')" class="md-primary"> Save </md-dialog-actions>
+    </div>
+</md-dialog>

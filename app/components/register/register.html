@@ -1,0 +1,59 @@
+<md-content layout-fill layout="row" layout-align="center center">
+    <!--<md-content layout-padding|fill|wrap|nowrap|margin layout="row | column" layout-align="start|center|end|space-around|space-between start|center|end|stretch">
+      content
+    </md-content>-->
+    <md-card layout="column" layout-padding flex-gt-md="25">
+        <!--<h2>Register</h2>-->
+        <!--<img src="card-image.png" class="md-card-image" alt="image caption">-->
+        <md-icon md-svg-icon="action:ic_account_circle_24px" style="width:60px;height:60px;" aria-label="account circle"></md-icon>
+        <form name="registrationForm" ng-submit="vm.onSubmit()">
+            <md-card-content class="autoScroll">
+                <md-input-container class="md-icon-float md-block">
+                    <label>Name</label>
+                    <md-icon class="md-avatar" hide-sm md-svg-icon="action:ic_perm_identity_24px"></md-icon>
+                    <input ng-model="vm.user.name" type="text" ng-required="true">
+                    <div ng-messages="projectForm.vm.user.name.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Email</label>
+                    <md-icon md-svg-icon="communication:ic_email_24px" aria-label="email"></md-icon>
+                    <input ng-model="vm.user.email" type="email" ng-required="true">
+                    <div ng-messages="projectForm.vm.user.email.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="email">Your email address is invalid</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Password</label>
+                    <md-icon md-svg-icon="communication:ic_vpn_key_24px" aria-label="vpm key"></md-icon>
+                    <input ng-model="vm.user.password" type="password" ng-required="true">
+                    <div ng-messages="projectForm.vm.user.password.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-icon-float md-block">
+                    <label>Confirm Password</label>
+                    <md-icon md-svg-icon="communication:ic_vpn_key_24px" aria-label="vpm key"></md-icon>
+                    <input ng-model="vm.user.cPassword" compare-field="vm.user.password" type="password" ng-required="true">
+                    <div ng-messages="projectForm.vm.user.cPassword.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="noMatch">Passwords do not match.</div>
+                    </div>
+                </md-input-container>
+                <md-radio-group ng-model="vm.user.role" layout="row">
+                    <md-radio-button value="developer" class="md-primary"> Developer </md-radio-button>
+                    <md-radio-button value="manager"> Manager </md-radio-button>
+                </md-radio-group>
+            </md-card-content>
+            <md-card-actions layout="column">
+                <md-button class="md-raised md-primary" type="submit">Register</md-button>
+            </md-card-actions>
+            <md-card-footer layout="row">
+                <p class="md-body-2" flex>Already have an account?</p>
+                <md-button class="md-primary">Log In</md-button>
+            </md-card-footer>
+        </form>
+    </md-card>
+</md-content>

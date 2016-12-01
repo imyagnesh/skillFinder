@@ -1,0 +1,8 @@
+<md-content layout-nowrap  >
+    <md-icon tabindex="-1" md-svg-icon="{{((hoverValue + _rating) <= $index) && 'toggle:ic_star_border_24px' || 'toggle:ic_star_24px'}}" aria-label="Rating" ng-Click="isolatedClick($index + 1)" ng-mouseenter="isolatedMouseHover($index + 1)" ng-mouseleave="isolatedMouseLeave($index + 1)" ng-repeat="idx in maxRatings track by $index"></md-icon>
+<!--<md-icon class="material-icons md-warn" aria-label="More"   >
+    
+</md-icon>-->
+
+</md-content>
+    

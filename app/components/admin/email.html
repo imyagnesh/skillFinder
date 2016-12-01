@@ -1,0 +1,50 @@
+<md-dialog aria-label="Form">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h3>
+        <span>Send Mail</span>
+      </h3>
+        </div>
+    </md-toolbar>
+    <md-content flex>
+        <md-list>
+            <md-list-item>
+                <div class="md-list-item-text">
+                    <h4>To  </h4>
+                </div>
+                <md-contact-chips ng-model="to" md-contact-name="name" md-contact-email="email" placeholder="To"></md-contact-chips>
+                <!-- <md-divider inset></md-divider> -->
+            </md-list-item>
+            <md-list-item>
+                <div class="md-list-item-text">
+                    <h4>Cc  </h4>
+                </div>
+                <md-contact-chips ng-model="cc" md-contact-name="name" md-contact-email="email" placeholder="To"></md-contact-chips>
+            </md-list-item>
+            <md-list-item>
+                <md-input-container md-no-float class="md-block" flex>
+                    <input ng-model="user.address2" placeholder="Subject">
+                </md-input-container>
+            </md-list-item>
+    </md-content>
+    <!-- <md-content class="md-padding">
+        <form name="userForm">
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>First Name</label>
+                    <input ng-model="user.firstName"> </md-input-container>
+                <md-input-container flex>
+                    <label>Last Name</label>
+                    <input ng-model="user.lastName"> </md-input-container>
+            </div>
+            <md-input-container flex>
+                <label>Message</label>
+                <textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea>
+            </md-input-container>
+        </form>
+    </md-content>
+    <md-dialog-actions layout="row"> <span flex></span>
+        <md-button ng-click="answer('not useful')"> Cancel </md-button>
+        <md-button ng-click="answer('useful')" class="md-primary"> Save </md-dialog-actions>
+    </md-dialog-actions> -->
+</md-dialog>

@@ -1,0 +1,20 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <!--<md-button class="md-icon-button" aria-label="Settings">
+            <md-icon style="color: #fff"
+            aria-label="menu"
+            class="material-icons step"
+            ng-class="md-24">
+          menu
+        </md-icon>
+        </md-button>-->
+        <h2>
+          <span>Skill Finder</span>
+        </h2>
+        <span flex></span>
+        <div ng-if="vm.isLoggedIn">
+            <md-button class="md-accent">{{vm.currentUser.name}}</md-button>
+            <md-button class="md-accent">SIGN OFF</md-button>
+        </div>
+    </div>
+</md-toolbar>
